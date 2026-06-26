@@ -1,0 +1,32 @@
+diff --git a/inference_propainter.py b/inference_propainter.py
+index 4d7f92f..abd3016 100644
+--- a/inference_propainter.py
++++ b/inference_propainter.py
+@@ -49,10 +49,10 @@ def resize_frames(frames, size=None):
+ def read_frame_from_videos(frame_root):
+     if frame_root.endswith(('mp4', 'mov', 'avi', 'MP4', 'MOV', 'AVI')): # input video path
+         video_name = os.path.basename(frame_root)[:-4]
+-        vframes, aframes, info = torchvision.io.read_video(filename=frame_root, pts_unit='sec') # RGB
+-        frames = list(vframes.numpy())
+-        frames = [Image.fromarray(f) for f in frames]
+-        fps = info['video_fps']
++        import imageio.v3 as iio
++        meta = iio.immeta(frame_root, plugin="pyav")
++        fps = meta.get('fps', 24)
++        frames = [Image.fromarray(f) for f in iio.imiter(frame_root, plugin="pyav")]
+     else:
+         video_name = os.path.basename(frame_root)
+         frames = []
+diff --git a/model/misc.py b/model/misc.py
+index 43b8499..c1b8f6b 100644
+--- a/model/misc.py
++++ b/model/misc.py
+@@ -70,6 +70,8 @@ def get_device(gpu_id=None):
+     else:
+         raise TypeError('Input should be int value.')
+ 
++    if os.environ.get('PROPAINTER_FORCE_CPU') == '1':
++        return torch.device('cpu')
+     if IS_HIGH_VERSION:
+         if torch.backends.mps.is_available():
+             return torch.device('mps'+gpu_str)

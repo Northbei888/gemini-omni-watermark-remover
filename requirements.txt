@@ -1,0 +1,18 @@
+# Core (always required)
+numpy
+
+# Required only for --method inpaint (AI video inpainting via ProPainter).
+# Comment these out if you only use --method delogo / crop.
+torch
+torchvision
+opencv-python
+scipy
+scikit-image
+einops
+av
+imageio
+imageio-ffmpeg
+tqdm
+matplotlib
+addict
+pyyaml

@@ -1,0 +1,55 @@
+Gemini / Veo visible watermark remover quick start
+==================================================
+
+This folder is designed to be moved to another Windows computer.
+
+Scope
+-----
+
+This project is intended only for the visible watermark produced by the Gemini
+OMIN model. The drag-and-drop scripts currently support only 1280x720 videos.
+
+First-time setup
+----------------
+
+CPU only:
+1. Install Python 3.10-3.12.
+2. Install Node.js LTS.
+3. Install Git.
+4. Double-click setup_cpu.bat.
+
+NVIDIA GPU:
+1. Install the NVIDIA driver.
+2. Install Python 3.10-3.12.
+3. Install Node.js LTS.
+4. Install Git.
+5. Double-click setup_gpu_nvidia.bat.
+
+Daily use
+---------
+
+Preview the box:
+- Drag one 1280x720 video onto preview_watermark_box_drag.bat.
+- It creates a preview PNG beside the video.
+
+Remove watermark:
+- CPU: drag videos onto remove_watermark_cpu_drag.bat.
+- NVIDIA GPU: drag videos onto remove_watermark_gpu_drag.bat.
+
+Output files are written beside the input video as:
+<original_name>_clean.mp4
+
+Default watermark box
+---------------------
+
+The drag scripts use this 1280x720 Veo sparkle watermark box:
+1136,576,48,48
+
+To change it, open the BAT file in Notepad and edit:
+set "WATERMARK_BOX=1136,576,48,48"
+
+Notes
+-----
+
+This removes only the visible overlay. It does not remove invisible provenance
+watermarks or metadata. Use only on videos you have the right to edit.

@@ -1,0 +1,50 @@
+GitHub publish checklist
+========================
+
+Keep these files
+----------------
+
+.gitignore
+dewatermark.py
+LICENSE
+package.json
+package-lock.json
+preview_watermark_box_drag.bat
+propainter.patch
+QUICK_START.txt
+README.md
+remove_watermark_cpu_drag.bat
+remove_watermark_gpu_drag.bat
+requirements.txt
+setup.sh
+setup_cpu.bat
+setup_gpu_nvidia.bat
+
+Do not commit these local/generated folders
+------------------------------------------
+
+.git/
+.venv/
+.venv-cpu/
+.venv-gpu/
+node_modules/
+ProPainter/
+__pycache__/
+results/
+_dewatermark_tmp/
+
+Do not commit these local/generated files
+----------------------------------------
+
+*_clean.mp4
+*_preview.png
+test_*.mp4
+test_*.png
+*_frame.png
+
+Why
+---
+
+The excluded folders are either very large, machine-specific, downloaded during
+setup, or generated while processing videos. GitHub should contain only source,
+setup scripts, and documentation.
