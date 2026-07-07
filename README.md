@@ -1,10 +1,10 @@
 # Gemini / Veo Visible Watermark Remover
 
 A Windows-friendly wrapper around a small `dewatermark.py` CLI for removing the
-visible watermark produced by the Gemini OMIN model from videos you have the
+visible watermark produced by the Gemini OMNI model from videos you have the
 right to edit.
 
-Scope: this project is intended only for the visible Gemini OMIN watermark.
+Scope: this project is intended only for the visible Gemini OMNI watermark.
 Currently, the drag-and-drop workflow only supports 1280x720 videos.
 
 ## Credits
@@ -14,7 +14,7 @@ This project is based on and adapted from
 Thanks to the original author for the core watermark detection/removal workflow
 and ProPainter integration.
 
-The drag-and-drop scripts are tuned for 1280x720 videos where the Gemini OMIN
+The drag-and-drop scripts are tuned for 1280x720 videos where the Gemini OMNI
 sparkle watermark is at:
 
 ```text
@@ -39,7 +39,7 @@ drag-and-drop use:
 - Added a GitHub-ready README, quick-start notes, and publish checklist.
 
 The main practical goal is to make repeated processing faster and simpler for
-users who work with the same 1280x720 Gemini OMIN watermark position.
+users who work with the same 1280x720 Gemini OMNI watermark position.
 
 ## Quick Start
 

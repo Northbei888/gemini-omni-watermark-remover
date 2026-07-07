@@ -7,7 +7,7 @@ Scope
 -----
 
 This project is intended only for the visible watermark produced by the Gemini
-OMIN model. The drag-and-drop scripts currently support only 1280x720 videos.
+OMNI model. The drag-and-drop scripts currently support only 1280x720 videos.
 
 First-time setup
 ----------------
