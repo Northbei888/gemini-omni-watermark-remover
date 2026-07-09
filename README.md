@@ -5,7 +5,10 @@ visible watermark produced by the Gemini OMNI model from videos you have the
 right to edit.
 
 Scope: this project is intended only for the visible Gemini OMNI watermark.
-Currently, the drag-and-drop workflow only supports 1280x720 videos.
+Currently, the drag-and-drop workflow supports only these video sizes:
+
+- `1280x720`
+- `720x1280`
 
 ## Credits
 
@@ -14,11 +17,12 @@ This project is based on and adapted from
 Thanks to the original author for the core watermark detection/removal workflow
 and ProPainter integration.
 
-The drag-and-drop scripts are tuned for 1280x720 videos where the Gemini OMNI
-sparkle watermark is at:
+The drag-and-drop scripts automatically choose the Gemini OMNI sparkle
+watermark box from the input video size:
 
 ```text
-x=1136, y=576, width=48, height=48
+1280x720:  x=1136, y=576,  width=48, height=48
+720x1280:  x=576,  y=1136, width=48, height=48
 ```
 
 The tool removes only the visible overlay. It does not remove invisible
@@ -31,7 +35,7 @@ drag-and-drop use:
 
 - Added Windows setup scripts for CPU and NVIDIA GPU environments.
 - Added drag-and-drop BAT files for CPU, NVIDIA GPU, and preview-only workflows.
-- Added a fixed small 720P Veo sparkle watermark box: `1136,576,48,48`.
+- Added fixed small Gemini OMNI watermark boxes for `1280x720` and `720x1280`.
 - Added NVIDIA CUDA usage through `--device cuda`.
 - Added local `ffmpeg` / `ffprobe` installation through npm packages.
 - Added UTF-8 subprocess log handling to avoid Windows console decode crashes.
@@ -39,7 +43,7 @@ drag-and-drop use:
 - Added a GitHub-ready README, quick-start notes, and publish checklist.
 
 The main practical goal is to make repeated processing faster and simpler for
-users who work with the same 1280x720 Gemini OMNI watermark position.
+users who work with the supported Gemini OMNI watermark positions.
 
 ## Quick Start
 
@@ -77,18 +81,18 @@ preview_watermark_box_drag.bat
 It creates a preview PNG next to the video so you can confirm the red box covers
 the watermark.
 
-## Change The Default Watermark Box
+## Change The Watermark Box
 
-Open the drag BAT file in Notepad and edit:
+The drag scripts call:
 
 ```bat
-set "WATERMARK_BOX=1136,576,48,48"
+dewatermark.py input.mp4 --omni-box
 ```
 
-The format is:
+If you need a custom position, replace `--omni-box` with a manual box:
 
 ```text
-x,y,width,height
+--box x,y,width,height
 ```
 
 ## Command Line Usage
@@ -96,13 +100,13 @@ x,y,width,height
 After setup, you can also run:
 
 ```bat
-.venv-cpu\Scripts\python.exe dewatermark.py input.mp4 --box 1136,576,48,48 -o output.mp4
+.venv-cpu\Scripts\python.exe dewatermark.py input.mp4 --omni-box -o output.mp4
 ```
 
 For NVIDIA GPU:
 
 ```bat
-.venv-gpu\Scripts\python.exe dewatermark.py input.mp4 --box 1136,576,48,48 --device cuda -o output.mp4
+.venv-gpu\Scripts\python.exe dewatermark.py input.mp4 --omni-box --device cuda -o output.mp4
 ```
 
 ## What Setup Downloads

@@ -157,6 +157,18 @@ def resolve_corner_preset(corner, size, margin, W, H):
     return max(0, x), max(0, y), bw, bh
 
 
+def resolve_omni_preset(W, H):
+    presets = {
+        (1280, 720): (1136, 576, 48, 48),
+        (720, 1280): (576, 1136, 48, 48),
+    }
+    box = presets.get((W, H))
+    if box is None:
+        supported = ", ".join(f"{w}x{h}" for w, h in presets)
+        sys.exit(f"unsupported video size {W}x{H} for --omni-box. Supported: {supported}.")
+    return box
+
+
 def crop_window(box, W, H, ctx=256):
     """A square window around the watermark box, clamped to the frame (mult of 8).
 
@@ -267,6 +279,8 @@ def main():
     p.add_argument("--corner", choices=["br", "bl", "tr", "tl"],
                    help="force the logo corner (skips auto-detection)")
     p.add_argument("--box", help="explicit box 'x,y,w,h' in px (skips auto-detection)")
+    p.add_argument("--omni-box", action="store_true",
+                   help="use the fixed Gemini OMNI watermark box for 1280x720 or 720x1280")
     p.add_argument("--size", type=float, default=0.16,
                    help="preset box width fraction, used with --corner (default 0.16)")
     p.add_argument("--margin", type=float, default=0.02,
@@ -284,7 +298,10 @@ def main():
 
     W, H, dur = probe(src)
 
-    if args.box:
+    if args.omni_box:
+        x, y, w, h = resolve_omni_preset(W, H)
+        print(f"video {W}x{H}  box x={x} y={y} w={w} h={h}  (Gemini OMNI preset)")
+    elif args.box:
         x, y, w, h = (int(v) for v in args.box.split(","))
         print(f"video {W}x{H}  box x={x} y={y} w={w} h={h}  (manual)")
     elif args.corner:

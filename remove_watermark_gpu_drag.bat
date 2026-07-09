@@ -2,12 +2,11 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-set "WATERMARK_BOX=1136,576,48,48"
 set "PYTHON_EXE=%~dp0.venv-gpu\Scripts\python.exe"
 
 if "%~1"=="" (
-  echo Drag one or more 1280x720 video files onto this BAT file.
-  echo Current watermark box: %WATERMARK_BOX%
+  echo Drag one or more 1280x720 or 720x1280 video files onto this BAT file.
+  echo Supported sizes: 1280x720 and 720x1280.
   echo.
   pause
   exit /b 1
@@ -38,7 +37,7 @@ echo Output:
 echo %OUTPUT%
 echo.
 
-"%PYTHON_EXE%" dewatermark.py "%INPUT%" --box %WATERMARK_BOX% --device cuda -o "%OUTPUT%"
+"%PYTHON_EXE%" dewatermark.py "%INPUT%" --omni-box --device cuda -o "%OUTPUT%"
 if errorlevel 1 (
   echo.
   echo Failed:

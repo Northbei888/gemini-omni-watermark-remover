@@ -7,7 +7,8 @@ Scope
 -----
 
 This project is intended only for the visible watermark produced by the Gemini
-OMNI model. The drag-and-drop scripts currently support only 1280x720 videos.
+OMNI model. The drag-and-drop scripts currently support only 1280x720 and
+720x1280 videos.
 
 First-time setup
 ----------------
@@ -29,7 +30,7 @@ Daily use
 ---------
 
 Preview the box:
-- Drag one 1280x720 video onto preview_watermark_box_drag.bat.
+- Drag one 1280x720 or 720x1280 video onto preview_watermark_box_drag.bat.
 - It creates a preview PNG beside the video.
 
 Remove watermark:
@@ -39,14 +40,19 @@ Remove watermark:
 Output files are written beside the input video as:
 <original_name>_clean.mp4
 
-Default watermark box
----------------------
+Default watermark boxes
+-----------------------
 
-The drag scripts use this 1280x720 Veo sparkle watermark box:
-1136,576,48,48
+The drag scripts automatically choose the box from the video size:
 
-To change it, open the BAT file in Notepad and edit:
-set "WATERMARK_BOX=1136,576,48,48"
+1280x720:  1136,576,48,48
+720x1280:  576,1136,48,48
+
+To use a custom box, edit the BAT file and replace:
+--omni-box
+
+with:
+--box x,y,width,height
 
 Notes
 -----

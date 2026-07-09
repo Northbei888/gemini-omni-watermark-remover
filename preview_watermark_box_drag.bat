@@ -2,13 +2,12 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
-set "WATERMARK_BOX=1136,576,48,48"
 set "PYTHON_EXE=%~dp0.venv-cpu\Scripts\python.exe"
 if not exist "%PYTHON_EXE%" set "PYTHON_EXE=%~dp0.venv-gpu\Scripts\python.exe"
 
 if "%~1"=="" (
   echo Drag one video file onto this BAT file to preview the watermark box.
-  echo Current watermark box: %WATERMARK_BOX%
+  echo Supported sizes: 1280x720 and 720x1280.
   echo.
   pause
   exit /b 1
@@ -25,6 +24,6 @@ if not exist "%PYTHON_EXE%" (
 set "PATH=%~dp0node_modules\ffmpeg-static;%~dp0node_modules\ffprobe-static\bin\win32\x64;%PATH%"
 set "PYTHONIOENCODING=utf-8"
 
-"%PYTHON_EXE%" dewatermark.py "%~1" --box %WATERMARK_BOX% --preview
+"%PYTHON_EXE%" dewatermark.py "%~1" --omni-box --preview
 echo.
 pause

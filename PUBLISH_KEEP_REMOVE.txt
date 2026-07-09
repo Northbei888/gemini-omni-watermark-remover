@@ -20,6 +20,12 @@ setup.sh
 setup_cpu.bat
 setup_gpu_nvidia.bat
 
+Current supported video sizes
+-----------------------------
+
+1280x720 uses box 1136,576,48,48.
+720x1280 uses box 576,1136,48,48.
+
 Do not commit these local/generated folders
 ------------------------------------------
 
