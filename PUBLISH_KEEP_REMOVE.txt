@@ -9,6 +9,8 @@ dewatermark.py
 LICENSE
 package.json
 package-lock.json
+assets/compare.gif
+assets/compare.mp4
 preview_watermark_box_drag.bat
 propainter.patch
 QUICK_START.txt

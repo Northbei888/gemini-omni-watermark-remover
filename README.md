@@ -4,6 +4,12 @@ A Windows-friendly wrapper around a small `dewatermark.py` CLI for removing the
 visible watermark produced by the Gemini OMNI model from videos you have the
 right to edit.
 
+## Preview
+
+![Before and after comparison](assets/compare.gif)
+
+Tutorial video: [compare.mp4](assets/compare.mp4)
+
 Scope: this project is intended only for the visible Gemini OMNI watermark.
 Currently, the drag-and-drop workflow supports only these video sizes:
 
